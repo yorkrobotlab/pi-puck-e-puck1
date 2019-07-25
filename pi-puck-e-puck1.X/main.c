@@ -24,39 +24,14 @@ int16_t main(void)
     
     while(1)
     {
-        unsigned int result = adc_read(5);
-        printf("%d\n", result);
+        unsigned int acc_x, acc_y, acc_z;
+        
+        acc_x = adc_read(5);
+        acc_y = adc_read(6);
+        acc_z = adc_read(7);
+        
+        printf("%u, %u, %u\n", acc_x, acc_y, acc_z);
+        
         __delay_ms(100);
     }
-    
-//    leds_init();
-//    unsigned long delay = 1000/8;
-//    while(1)
-//    {        
-//        // Loop through LEDs
-//        LED0 = 1;
-//        __delay_ms(delay);
-//        LED0 = 0;
-//        LED1 = 1;
-//        __delay_ms(delay);
-//        LED1 = 0;
-//        LED2 = 1;
-//        __delay_ms(delay);
-//        LED2 = 0;
-//        LED3 = 1;
-//        __delay_ms(delay);
-//        LED3 = 0;
-//        LED4 = 1;
-//        __delay_ms(delay);
-//        LED4 = 0;
-//        LED5 = 1;
-//        __delay_ms(delay);
-//        LED5 = 0;
-//        LED6 = 1;
-//        __delay_ms(delay);
-//        LED6 = 0;
-//        LED7 = 1;
-//        __delay_ms(delay)
-//        LED7 = 0;
-//    }
 }
