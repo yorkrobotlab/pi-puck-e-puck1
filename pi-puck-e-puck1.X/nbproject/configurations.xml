@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>system.h</itemPath>
       <itemPath>leds.h</itemPath>
+      <itemPath>uart2.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -20,6 +21,7 @@
       <itemPath>system.c</itemPath>
       <itemPath>traps.c</itemPath>
       <itemPath>leds.c</itemPath>
+      <itemPath>uart2.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
