@@ -6,13 +6,20 @@
 #include "leds.h"
 #include "uart2.h"
 #include <stdio.h>
-
+#include "i2c_slave.h"
 
 int16_t main(void)
 {
     uart2_init();
     
     printf("I am an e-puck.\n");
+    
+    unsigned int i;
+    for (i = 0; i < 256; i++) {
+        i2c_data[i] = i;
+    }
+    
+    i2c_slave_init();
     
     leds_init();
     unsigned long delay = 1000/8;
