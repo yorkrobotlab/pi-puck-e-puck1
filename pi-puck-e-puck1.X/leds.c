@@ -26,3 +26,21 @@ void leds_init()
     BODY_LED = 0;
     BODY_LED_DIR = OUTPUT_PIN;
 }
+
+void leds_set_outer(uint8_t value)
+{
+    LED0 = value;
+    LED1 = value >> 1;
+    LED2 = value >> 2;
+    LED3 = value >> 3;
+    LED4 = value >> 4;
+    LED5 = value >> 5;
+    LED6 = value >> 6;
+    LED7 = value >> 7;
+}
+
+void leds_set_front_body(uint8_t value)
+{
+    FRONT_LED = value;
+    BODY_LED = value >> 1;
+}
