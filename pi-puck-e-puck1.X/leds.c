@@ -1,6 +1,7 @@
 #include "leds.h"
 
-void leds_init() {
+void leds_init()
+{
     LED0 = 0;
     LED1 = 0;
     LED2 = 0;

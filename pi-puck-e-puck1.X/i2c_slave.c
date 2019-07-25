@@ -12,7 +12,20 @@ struct I2CFlagType flag;
 void i2c_slave_init(void)
 {
     // Set up and enable I2C module
-    I2CCON = I2C_ON & I2C_IDLE_CON & I2C_CLK_HLD & I2C_IPMI_DIS & I2C_7BIT_ADD & I2C_SLW_DIS & I2C_SM_EN & I2C_GCALL_DIS & I2C_STR_DIS & I2C_ACK & I2C_ACK_DIS & I2C_RCV_DIS & I2C_STOP_DIS & I2C_RESTART_DIS & I2C_START_DIS;
+    I2CCON = I2C_ON &
+             I2C_IDLE_CON &
+             I2C_CLK_HLD &
+             I2C_IPMI_DIS &
+             I2C_7BIT_ADD &
+             I2C_SLW_DIS &
+             I2C_SM_EN &
+             I2C_GCALL_DIS &
+             I2C_STR_DIS & I2C_ACK &
+             I2C_ACK_DIS &
+             I2C_RCV_DIS &
+             I2C_STOP_DIS &
+             I2C_RESTART_DIS &
+             I2C_START_DIS;
     
     // Set 7-bit I2C slave address
     I2CADD = 0x1e;
