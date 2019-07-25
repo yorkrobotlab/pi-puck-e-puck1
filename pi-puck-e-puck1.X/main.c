@@ -1,12 +1,12 @@
 #include <xc.h>
 #include <stdint.h>
-#include <stdbool.h>
+#include <stdio.h>
 #include "system.h"
 #include <libpic30.h>
+
 #include "adc.h"
 #include "leds.h"
 #include "uart2.h"
-#include <stdio.h>
 #include "i2c_slave.h"
 
 int16_t main(void)
