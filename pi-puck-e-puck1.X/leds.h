@@ -32,6 +32,8 @@
 
 
 void leds_init();
+void leds_set_outer(uint8_t value);
+void leds_set_front_body(uint8_t value);
 
 
 #endif /* LEDS_H */
