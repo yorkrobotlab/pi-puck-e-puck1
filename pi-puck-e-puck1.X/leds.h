@@ -1,5 +1,5 @@
 #ifndef LEDS_H
-#define	LEDS_H
+#define LEDS_H
 
 #include <xc.h>
 
@@ -34,4 +34,4 @@
 void leds_init();
 
 
-#endif	/* LEDS_H */
+#endif /* LEDS_H */

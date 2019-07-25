@@ -3,9 +3,9 @@
 /******************************************************************************/
 
 /* Microcontroller MIPs (FCY) */
-#define FOSC   7.3728e6     // 7.3728Mhz crystal in XTL mode 
-#define PLL    8.0       	// 8x PLL
-#define FCY     ((FOSC*PLL)/(4.0))	// Instruction cycle frequency 
+#define FOSC 7.3728e6           // 7.3728Mhz crystal in XTL mode 
+#define PLL  8.0                // 8x PLL
+#define FCY  ((FOSC*PLL)/(4.0)) // Instruction cycle frequency 
 
 /******************************************************************************/
 /* System Function Prototypes                                                 */
