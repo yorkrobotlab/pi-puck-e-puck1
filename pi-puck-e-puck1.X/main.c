@@ -37,6 +37,8 @@ int16_t main(void)
     motors_set_speed_left(motor_left);
     motors_set_speed_right(motor_right);
     
+    uint8_t ir_control = 0;
+    
 //    printf("Starting main loop...\n");
 
     while (1) {
@@ -77,6 +79,37 @@ int16_t main(void)
         
         i2c_data[4].u = motors_get_steps_left();
         i2c_data[5].u = motors_get_steps_right();
+        
+        if (ir_control != i2c_data[6].u_low) {
+            // Valid values are 0x0000 to 0x0001
+            i2c_data[6].u &= 0x0001;
+            ir_control = i2c_data[6].u_low;
+            if (ir_control & 1) {
+                ir_sensors_start();
+            }
+            else {
+                ir_sensors_stop();
+            }
+//            printf("Set IR control register to 0x%02x\n", ir_control);
+        }
+        
+        i2c_data[7].s = ir_sensors_get_reflected(0);
+        i2c_data[8].s = ir_sensors_get_reflected(1);
+        i2c_data[9].s = ir_sensors_get_reflected(2);
+        i2c_data[10].s = ir_sensors_get_reflected(3);
+        i2c_data[11].s = ir_sensors_get_reflected(4);
+        i2c_data[12].s = ir_sensors_get_reflected(5);
+        i2c_data[13].s = ir_sensors_get_reflected(6);
+        i2c_data[14].s = ir_sensors_get_reflected(7);
+        
+        i2c_data[15].s = ir_sensors_get_ambient(0);
+        i2c_data[16].s = ir_sensors_get_ambient(1);
+        i2c_data[17].s = ir_sensors_get_ambient(2);
+        i2c_data[18].s = ir_sensors_get_ambient(3);
+        i2c_data[19].s = ir_sensors_get_ambient(4);
+        i2c_data[20].s = ir_sensors_get_ambient(5);
+        i2c_data[21].s = ir_sensors_get_ambient(6);
+        i2c_data[22].s = ir_sensors_get_ambient(7);
         
         __delay_ms(1);
     }
