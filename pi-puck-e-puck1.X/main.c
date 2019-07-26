@@ -8,6 +8,7 @@
 #include "leds.h"
 #include "uart2.h"
 #include "i2c_slave.h"
+#include "ir_sensors.h"
 
 int16_t main(void)
 {
@@ -20,12 +21,20 @@ int16_t main(void)
     adc_init();
     i2c_slave_init();
     leds_init();
+//    ir_sensors_init();
     
     printf("I am an e-puck.\n");
     
     while(1)
     {
-        printf("Looping\n");
+        int i;
+        
+        for(i = 0; i < 8; i++)
+//            printf("%u, ", ir_sensors_get_ambient(i));
+//            printf("%u, ", ir_sensors_get_reflected(i));
+            printf("%u, ", adc_read(IR0 + i));
+        
+        printf("\n");
         
         __delay_ms(100);
     }
