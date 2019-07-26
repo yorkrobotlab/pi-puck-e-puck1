@@ -11,6 +11,8 @@
 #define MICROSECOND (FCY / 1.0e6) // 1 microsecond delay constant
 #define NANOSECOND  (FCY / 1.0e9) // 1 nanosecond delay constant
 
+#define OUTPUT_PIN 0
+
 /******************************************************************************/
 /* System Function Prototypes                                                 */
 /******************************************************************************/

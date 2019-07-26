@@ -4,7 +4,7 @@
 #include "system.h"
 #include "adc.h"
 
-#include "leds.h"
+#define ADC_INPUT_MAX 4095 // Maximum value of 12-bit ADC input = 2^12 - 1
 
 static int ambient_ir[8];  // Ambient IR light measurement
 static int ambient_and_reflected_ir[8]; // IR light when IR LEDs are on
@@ -132,6 +132,16 @@ void ir_sensors_init()
     IFS0bits.T1IF = 0; // Clear Timer1 interrupt flag
     IEC0bits.T1IE = 1; // Enable Timer1 interrupts
     T1CONbits.TON = 1; // Start Timer1
+    
+    PULSE_IR0 = 0;
+    PULSE_IR1 = 0;
+    PULSE_IR2 = 0;
+    PULSE_IR3 = 0;
+    
+    PULSE_IR0_DIR = OUTPUT_PIN;
+    PULSE_IR1_DIR = OUTPUT_PIN;
+    PULSE_IR2_DIR = OUTPUT_PIN;
+    PULSE_IR3_DIR = OUTPUT_PIN;
 }
 
 void ir_sensors_stop()
@@ -145,7 +155,7 @@ int ir_sensors_get_ambient(unsigned int sensor_number)
 	if(sensor_number > 7)
         return 0;
 	else
-        return ambient_ir[sensor_number];
+        return ADC_INPUT_MAX - ambient_ir[sensor_number];
 }
 
 // To estimate the proximity of an obstacle, we do the following:

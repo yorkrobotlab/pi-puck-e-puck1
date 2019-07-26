@@ -18,6 +18,11 @@
 #define PULSE_IR2 _LATG0 // Emitters 2 and 6
 #define PULSE_IR3 _LATG1 // Emitters 3 and 7
 
+#define PULSE_IR0_DIR _TRISF7
+#define PULSE_IR1_DIR _TRISF8
+#define PULSE_IR2_DIR _TRISG0
+#define PULSE_IR3_DIR _TRISG1
+
 void ir_sensors_init();
 int ir_sensors_get_ambient(unsigned int sensor_number);
 int ir_sensors_get_reflected(unsigned int sensor_number);

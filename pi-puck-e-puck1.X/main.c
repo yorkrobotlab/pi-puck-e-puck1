@@ -29,12 +29,19 @@ int16_t main(void)
     {
         int i;
         
+        printf("ambient:\t");
+        
         for(i = 0; i < 8; i++)
-            printf("%u, ", 4095 - ir_sensors_get_ambient(i));
-//            printf("%u, ", 4095 - ir_sensors_get_reflected(i));
-//            printf("%u, ", 4095 - adc_read(IR0 + i));
+            printf("%u, ", ir_sensors_get_ambient(i));
         
         printf("\n");
+        
+        printf("reflected:\t");
+        
+        for(i = 0; i < 8; i++)
+            printf("%u, ", ir_sensors_get_reflected(i));
+        
+        printf("\n\n");
         
         __delay_ms(100);
     }

@@ -67,8 +67,7 @@ unsigned int adc_read(unsigned int channel)
     ADCHS = channel;
     
     ADCON1bits.SAMP = 1; // Start sampling    
-//    __delay_us(10);      // TODO: Delay based on TAD instead? "The user software must time the setting and clearing of the SAMP bit to ensure adequate sampling time of the input signal"
-    __delay_us(100);      // TODO: Delay based on TAD instead? "The user software must time the setting and clearing of the SAMP bit to ensure adequate sampling time of the input signal"
+    __delay_us(10);      // TODO: Delay based on TAD instead? "The user software must time the setting and clearing of the SAMP bit to ensure adequate sampling time of the input signal"
     ADCON1bits.SAMP = 0; // Stop sampling and start converting
     
     while(!ADCON1bits.DONE); // Wait until conversion is done. This should take 14 * TAD = 14 * 666.67 ns = 9.33 us

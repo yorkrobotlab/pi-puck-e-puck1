@@ -2,8 +2,7 @@
 #define LEDS_H
 
 #include <xc.h>
-
-#define OUTPUT_PIN 0
+#include "system.h"
 
 // LED0 is front, incrementing clockwise
 #define LED0 _LATA6
