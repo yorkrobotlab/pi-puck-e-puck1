@@ -25,6 +25,8 @@ int16_t main(void)
     
     printf("I am an e-puck.\n");
     
+    ir_sensors_start();
+    
     while(1)
     {
         int i;

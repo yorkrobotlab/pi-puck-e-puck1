@@ -24,6 +24,8 @@
 #define PULSE_IR3_DIR _TRISG1
 
 void ir_sensors_init();
+void ir_sensors_start();
+void ir_sensors_stop();
 int ir_sensors_get_ambient(unsigned int sensor_number);
 int ir_sensors_get_reflected(unsigned int sensor_number);
 

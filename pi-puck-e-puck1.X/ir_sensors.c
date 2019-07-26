@@ -24,7 +24,6 @@ _T1Interrupt(void)
 
     IFS0bits.T1IF = 0; // Clear Timer1 interrupt flag
 
-    // TODO: Use inline function instead?
     switch(ir_number)
     {
         case 0: // IR sensors 0 and 4
@@ -124,15 +123,7 @@ _T1Interrupt(void)
 
 
 void ir_sensors_init()
-{
-    T1CON = 0; // Clear the Timer1 control register
-    T1CONbits.TCKPS = 1; // Timer Input Clock Prescale Select bit set to 1:8 prescale value
-    TMR1 = 0; // Clear Timer1
-    PR1 = (350.0 * MICROSECOND) / 8.0; // Set Timer1 period register such that the first interrupt occurs after 350 us with a 1:8 prescaler
-    IFS0bits.T1IF = 0; // Clear Timer1 interrupt flag
-    IEC0bits.T1IE = 1; // Enable Timer1 interrupts
-    T1CONbits.TON = 1; // Start Timer1
-    
+{   
     PULSE_IR0 = 0;
     PULSE_IR1 = 0;
     PULSE_IR2 = 0;
@@ -142,6 +133,17 @@ void ir_sensors_init()
     PULSE_IR1_DIR = OUTPUT_PIN;
     PULSE_IR2_DIR = OUTPUT_PIN;
     PULSE_IR3_DIR = OUTPUT_PIN;
+}
+
+void ir_sensors_start()
+{
+    T1CON = 0; // Clear the Timer1 control register
+    T1CONbits.TCKPS = 1; // Timer Input Clock Prescale Select bit set to 1:8 prescale value
+    TMR1 = 0; // Clear Timer1
+    PR1 = (350.0 * MICROSECOND) / 8.0; // Set Timer1 period register such that the first interrupt occurs after 350 us with a 1:8 prescaler
+    IFS0bits.T1IF = 0; // Clear Timer1 interrupt flag
+    IEC0bits.T1IE = 1; // Enable Timer1 interrupts
+    T1CONbits.TON = 1; // Start Timer1
 }
 
 void ir_sensors_stop()
