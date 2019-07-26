@@ -4,7 +4,7 @@
 #include <i2c.h>
 #include "i2c_slave.h"
 
-uint8_t i2c_data[256]; // Data area for I2C device
+i2c_data_type i2c_data[256]; // Data area for I2C device
 uint8_t register_addr; // Pointer to current I2C memory location
 struct I2CFlagType flag;
 
@@ -36,7 +36,8 @@ void i2c_slave_init(void)
     // Initialise data pointer and flags
     register_addr = 0;
     flag.AddrFlag = 0;
-    flag.DataFlag = 0;
+    flag.Data1Flag = 0;
+    flag.Data2Flag = 0;
     
     // Enable Slave I2C Transfer Complete Interrupt
     IEC0bits.SI2CIE = 1;
@@ -59,19 +60,28 @@ void __attribute__((interrupt,no_auto_psv)) _SI2CInterrupt(void)
             // Received register address
             register_addr = I2CRCV; // Read register address
             flag.AddrFlag = 0;
-            flag.DataFlag = 1; // Next byte will be data
+            flag.Data1Flag = 1; // Next byte will be data
         }
-        else if (flag.DataFlag) {
-            // Received register data
-            i2c_data[register_addr] = I2CRCV; // Store data into RAM
-            flag.AddrFlag = 0;
-            flag.DataFlag = 0;
+        else if (flag.Data1Flag) {
+            // Received register data byte 1
+            i2c_data[register_addr].u_low = I2CRCV; // Store data into RAM
+            i2c_data[register_addr].u_high = 0; // Clear high byte in case we don't receive one
+            flag.Data1Flag = 0;
+            flag.Data2Flag = 1;
+        }
+        else if (flag.Data2Flag) {
+            // Received register data byte 2
+            i2c_data[register_addr].u_high = I2CRCV; // Store data into RAM
+            flag.Data2Flag = 0;
         }
     }
     else if ((I2CSTATbits.R_W == 1) && (I2CSTATbits.D_A == 0)) {
-        // Data read from master
-        I2CTRN = i2c_data[register_addr]; // Set data to send to I2C master
+        // Data read byte 1 from master
+        I2CTRN = i2c_data[register_addr].u_low; // Set data to send to I2C master
         temp = I2CRCV; // Dummy read to clear register
+        I2CCONbits.SCLREL = 1; // Release SCL line
+        while(I2CSTATbits.TBF); // Wait for data transmission to complete
+        I2CTRN = i2c_data[register_addr].u_high; // Send second byte, if requested
         I2CCONbits.SCLREL = 1; // Release SCL line
         while(I2CSTATbits.TBF); // Wait for data transmission to complete
     }
