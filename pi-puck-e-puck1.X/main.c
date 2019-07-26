@@ -23,20 +23,27 @@ int16_t main(void)
     
     printf("I am an e-puck.\n");
     
-    uint8_t leds_outer = 0;
-    uint8_t leds_front_body = 0;
-    leds_set_outer(leds_outer);
-    leds_set_front_body(leds_front_body);
-
-    while (1) {
-        if (leds_outer != i2c_data[0]) {
-            leds_outer = i2c_data[0];
-            leds_set_outer(leds_outer);
-        }
-        if (leds_front_body != i2c_data[1]) {
-            leds_front_body = i2c_data[1];
-            leds_set_front_body(leds_front_body);
-        }
-        __delay_ms(1);
+    while(1)
+    {
+        printf("Looping\n");
+        
+        __delay_ms(100);
     }
+    
+//    uint8_t leds_outer = 0;
+//    uint8_t leds_front_body = 0;
+//    leds_set_outer(leds_outer);
+//    leds_set_front_body(leds_front_body);
+//
+//    while (1) {
+//        if (leds_outer != i2c_data[0]) {
+//            leds_outer = i2c_data[0];
+//            leds_set_outer(leds_outer);
+//        }
+//        if (leds_front_body != i2c_data[1]) {
+//            leds_front_body = i2c_data[1];
+//            leds_set_front_body(leds_front_body);
+//        }
+//        __delay_ms(1);
+//    }
 }
