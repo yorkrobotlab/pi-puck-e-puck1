@@ -9,6 +9,7 @@
 #include "uart2.h"
 #include "i2c_slave.h"
 #include "motors.h"
+#include "ir_sensors.h"
 
 int16_t main(void)
 {
@@ -22,6 +23,7 @@ int16_t main(void)
     i2c_slave_init();
     leds_init();
     motors_init();
+    ir_sensors_init();
     
     printf("I am an e-puck.\n");
     

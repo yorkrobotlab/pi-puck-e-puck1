@@ -1,7 +1,9 @@
 #include "adc.h"
 
-#include<libpic30.h>
+#include <xc.h>
 #include <adc12.h>
+#include "system.h"
+#include <libpic30.h>
 
 void adc_init()
 {
