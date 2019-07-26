@@ -21,7 +21,7 @@ int16_t main(void)
     adc_init();
     i2c_slave_init();
     leds_init();
-//    ir_sensors_init();
+    ir_sensors_init();
     
     printf("I am an e-puck.\n");
     
@@ -30,9 +30,9 @@ int16_t main(void)
         int i;
         
         for(i = 0; i < 8; i++)
-//            printf("%u, ", ir_sensors_get_ambient(i));
-//            printf("%u, ", ir_sensors_get_reflected(i));
-            printf("%u, ", adc_read(IR0 + i));
+            printf("%u, ", 4095 - ir_sensors_get_ambient(i));
+//            printf("%u, ", 4095 - ir_sensors_get_reflected(i));
+//            printf("%u, ", 4095 - adc_read(IR0 + i));
         
         printf("\n");
         
