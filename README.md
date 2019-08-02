@@ -17,6 +17,12 @@ Note that R30/R31 must be removed from the Pi-puck board for this to work, which
 The main purpose of the Pi-puck firmware is to provide an I2C interface for the Raspberry Pi to control the e-puck robot hardware.
 Additional functionality can be written into the dsPIC code, but the default assumption is that the majority of processing and control is to be performed by the Raspberry Pi, besides processing data into a format that is suitable for communication.
 
+### Building
+
+The firmware has been built and tested using Microchip MPLAB X IDE and XC16 compiler.
+
+In addition to the base install, the "Legacy PIC24 MCU & dsPIC DSC Peripheral Library" must be installed from www.microchip.com/en554272.
+
 
 ### I2C Register Map
 
