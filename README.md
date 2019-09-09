@@ -36,6 +36,6 @@ The firmware exposes a number of 8-bit or 16-bit I2C registers at slave address 
 |        3 |            16 | R/W        | Right motor velocity (steps per second)            | Signed value; -1000 to 1000                     |
 |        4 |            16 | RO         | Left motor total steps count                       | Unsigned value; 0 to 65535 (overflows)          |
 |        5 |            16 | RO         | Right motor total steps count                      | Unsigned value; 0 to 65535 (overflows)          |
-|        6 |             8 | R/W        | IR sensors control; enable or disable measurements | Set bit 0 to enable, clear to disable           |
+|        6 |             8 | R/W        | IR sensors control; enable or disable measurements | Set bit 0 to 1 to enable, 0 to disable           |
 |     7-14 |            16 | RO         | IR proximity (0-7); higher is closer               | Unsigned value; 0 to 4095                       |
 |    15-22 |            16 | RO         | IR ambient light (0-7); higher is brighter         | Unsigned value; 0 to 4095                       |
