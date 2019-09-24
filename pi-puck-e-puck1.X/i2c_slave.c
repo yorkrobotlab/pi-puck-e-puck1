@@ -28,7 +28,7 @@ void i2c_slave_init(void)
              I2C_START_DIS;
     
     // Set 7-bit I2C slave address
-    I2CADD = 0x1e;
+    I2CADD = 0x1f;
     
     // Clear interrupt status flag register
     IFS1 = 0;

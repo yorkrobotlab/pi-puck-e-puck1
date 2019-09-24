@@ -26,7 +26,7 @@ In addition to the base install, the "Legacy PIC24 MCU & dsPIC DSC Peripheral Li
 
 ### I2C Register Map
 
-The firmware exposes a number of 8-bit or 16-bit I2C registers at slave address `0x1e`.
+The firmware exposes a number of 8-bit or 16-bit I2C registers at slave address `0x1f`.
 
 | Register | Length (bits) | Read/Write | Description                                        | Data                                            |
 |---------:|--------------:|------------|----------------------------------------------------|-------------------------------------------------|

@@ -5,7 +5,7 @@ import sys
 import smbus
 
 I2C_CHANNEL = 4
-EPUCK_I2C_ADDR = 0x1e
+EPUCK_I2C_ADDR = 0x1f
 
 print('e-puck RGB LEDs test')
 

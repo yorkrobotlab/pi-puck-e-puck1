@@ -6,7 +6,7 @@ import smbus
 import signal
 
 I2C_CHANNEL = 4
-EPUCK_I2C_ADDR = 0x1e
+EPUCK_I2C_ADDR = 0x1f
 
 # Register addresses
 OUTER_LEDS = 0
