@@ -4,7 +4,7 @@
 ;	http://www.etc.ugal.ro/cchiculita/software/picbootloader.htm
 ;********************************************************************
         .equ __30F6014a, 1
-        .include "p30f6014a.inc"
+        .include "p30F6014A.inc"
 
 .equ Fcy, (7372800*2)
 .equ baud, 38400
