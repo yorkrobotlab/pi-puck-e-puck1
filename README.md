@@ -39,3 +39,10 @@ The firmware exposes a number of 8-bit or 16-bit I2C registers at slave address 
 |        6 |             8 | R/W        | IR sensors control; enable or disable measurements | Set bit 0 to 1 to enable, 0 to disable           |
 |     7-14 |            16 | RO         | IR proximity (0-7); higher is closer               | Unsigned value; 0 to 4095                       |
 |    15-22 |            16 | RO         | IR ambient light (0-7); higher is brighter         | Unsigned value; 0 to 4095                       |
+
+
+## Licence
+
+Unless otherwise specified, software is licensed under an [MIT Licence][mit].
+
+[mit]: /LICENSE
