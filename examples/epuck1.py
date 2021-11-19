@@ -1,7 +1,8 @@
 import smbus
 
 # Default e-puck I2C bus and firmware address
-I2C_CHANNEL = 4
+I2C_CHANNEL = 12
+LEGACY_I2C_CHANNEL = 4
 EPUCK_I2C_ADDR = 0x1f
 
 # Register addresses
@@ -34,21 +35,23 @@ IR7_AMBIENT = 22
 
 class Epuck1:
 
-	def __init__(self, i2c_bus=I2C_CHANNEL, i2c_address=EPUCK_I2C_ADDR):
-		self._bus = smbus.SMBus(i2c_bus)
-		self._i2c_address = i2c_address
+	def __init__(self):
+		try:
+			self._bus = smbus.SMBus(I2C_CHANNEL)
+		except FileNotFoundError:
+			self._bus = smbus.SMBus(LEGACY_I2C_CHANNEL)
 
 	def _write_data_8(self, address, data):
-		self._bus.write_byte_data(self._i2c_address, address, data)
+		self._bus.write_byte_data(EPUCK_I2C_ADDR, address, data)
 
 	def _write_data_16(self, address, data):
-		self._bus.write_word_data(self._i2c_address, address, data)
+		self._bus.write_word_data(EPUCK_I2C_ADDR, address, data)
 
 	def _read_data_8(self, address):
-		return self._bus.read_byte_data(self._i2c_address, address)
+		return self._bus.read_byte_data(EPUCK_I2C_ADDR, address)
 
 	def _read_data_16(self, address):
-		return self._bus.read_word_data(self._i2c_address, address)
+		return self._bus.read_word_data(EPUCK_I2C_ADDR, address)
 
 	def set_outer_leds_byte(self, leds):
 		self._write_data_8(OUTER_LEDS, leds)
